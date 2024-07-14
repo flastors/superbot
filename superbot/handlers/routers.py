@@ -1,9 +1,5 @@
 from aiogram import Router
 
-def setup_routers() -> Router:
-    from .user import router as user_router
+user_router = Router()
+admin_router = Router()
 
-    router = Router()
-    router.include_router(user_router)
-
-    return router

@@ -1,9 +1,8 @@
-from aiogram import Router
+from superbot.handlers.routers import user_router as router
 
 from aiogram.types import Message
 from aiogram.filters import Command
 
-router = Router()
 
 @router.message(Command('start'))
 async def _start(msg: Message):
