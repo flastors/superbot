@@ -1,8 +1,8 @@
 from aiogram.types import ErrorEvent
 
 from main import dp 
-import logging
+from utils import logger
 
 @dp.error()
 async def _error(event: ErrorEvent):
-    logging.warning(event.exception)
+    logger.warning(event.exception)

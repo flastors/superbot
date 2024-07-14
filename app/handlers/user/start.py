@@ -1,4 +1,4 @@
-from superbot.handlers.routers import user_router as router
+from app.handlers.routers import user_router as router
 
 from aiogram.types import Message
 from aiogram.filters import Command

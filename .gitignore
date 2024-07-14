@@ -3,3 +3,4 @@
 /tests/
 poetry.lock
 **/__pycache__
+/__pycache__

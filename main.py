@@ -1,29 +1,21 @@
 import asyncio
-import logging
-
-from aiogram import Dispatcher, Bot
-from aiogram.client.default import DefaultBotProperties
-from aiogram.enums import ParseMode
-
-from superbot.handlers import setup_routers
-from config import BOT_TOKEN
-
-
-dp = Dispatcher()
-bot = Bot(BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+from utils import logger
+from app.handlers import setup_routers
+from app.middlewares import setup_middlewares
+from loader import dp, bot
 
 async def on_startup():
-    ...
+    logger.info('Bot started!')
 
 async def on_shutdown():
-    ...
+    logger.info('Bot stopped!')
 
 async def main():
-    setup_routers(dp=dp)
-
-    await bot.delete_webhook(True)
+    setup_middlewares(dp)
+    setup_routers(dp)
+    dp.startup.register(on_startup)
+    dp.shutdown.register(on_shutdown)
     await dp.start_polling(bot)
 
 if __name__=='__main__':
-    logging.basicConfig(level=logging.DEBUG)
     asyncio.run(main())
